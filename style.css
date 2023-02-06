@@ -29,3 +29,7 @@ label {
   text-align: left;
   margin-top: 3px;
 }
+
+input:focus ~ label {
+  font-weight: bold;
+}
