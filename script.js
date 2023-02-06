@@ -1,9 +1,6 @@
-let izabranaFirma;
-let pib;
-let adresa;
+let izabranaFirma, naziv, pib, adresa;
 let godina = 2022;
 let Izmijenjena = false;
-let naziv;
 let OvlascenoLicePrezimeIme = 'Zeljko Djuranovic';
 let OvlascenoLicePIB = '1606981220012';
 let KontaktTelefon = '067440040'
@@ -12,16 +9,36 @@ const form = document.querySelector("form");
 const inputs = form.querySelectorAll("input");
 const select = document.getElementById("mySelect");
 const vrijednostiPolja = []
-
+let rezultat, dobit9, dobit12, dobit15, gubitak;
 
 
 // dodaje sve inpute u niz vrijednostiPolja
 inputs.forEach(function (input) {
+  vrijednostiPolja[input.name] = 0
   input.addEventListener("input", function () {
     vrijednostiPolja[input.name] = parseFloat(input.value);
+    console.log(vrijednostiPolja);
+    preracun(vrijednostiPolja)
   });
 });
 
+
+function preracun(vrijednosti) {
+  rezultat = vrijednosti['x01'] - vrijednosti['x03'] + vrijednosti['x04'] + vrijednosti['x05'] - vrijednosti['x06'] + vrijednosti['x07'] + vrijednosti['x08'] + vrijednosti['x09'] + vrijednosti['x10'] + vrijednosti['x11'] + vrijednosti['x12'] + vrijednosti['x13'] + vrijednosti['x14'] + vrijednosti['x15'] + vrijednosti['x16'] + vrijednosti['x17'] + vrijednosti['x18'] + vrijednosti['x19'] + vrijednosti['x20'] + vrijednosti['x21'] + vrijednosti['x22'] + vrijednosti['x23'] + vrijednosti['x24'] + vrijednosti['x27'] + vrijednosti['x28'] + vrijednosti['x29'] + vrijednosti['x32'] - vrijednosti['x33'] - vrijednosti['x34'] - vrijednosti['x35'];
+  if (rezultat < 0) {
+    gubitak = Math.abs(rezultat);
+    dobit9 = 0;
+    dobit12 = 0;
+    dobit15 = 0;
+
+  }
+  if (rezultat > 0 && rezultat < 100000) {
+    dobit9 = rezultat * 9 / 100;
+  }
+  console.log(rezultat);
+  console.log(gubitak);
+  console.log('dobit9 je', dobit9);
+}
 
 // funkcija za izvoz xml-a
 function download(filename, text) {
@@ -165,8 +182,8 @@ document.getElementById("download-btn").addEventListener(
       <Iznos61>${vrijednostiPolja['x61']}</Iznos61>
       <Iznos62>${vrijednostiPolja['x62']}</Iznos62>
       <IznosPG1_1>0</IznosPG1_1>
-      <IznosPG1_2>621</IznosPG1_2>
-      <IznosPG1_21>621</IznosPG1_21>
+      <IznosPG1_2>0</IznosPG1_2>
+      <IznosPG1_21>0</IznosPG1_21>
       <IznosPG1_22>0</IznosPG1_22>
       <IznosPG1_23>0</IznosPG1_23>
       <IznosPG1_24>0</IznosPG1_24>
