@@ -13,12 +13,20 @@ let rezultat,
   dobit9,
   dobit12,
   dobit15,
+  ukupnaDobit,
   gubitak,
   dobit,
   ostatakOporeziveDobiti,
   gubPrethGod,
   kapDob,
-  kapGub;
+  kapGub,
+  ostKapDob,
+  poreskaOsnovica,
+  utvrdjenaPoreskaObaveza,
+  ukupnoPlacenPorez,
+  porezKojiSeDuguje,
+  preplaceniPorez,
+  mjesecnaAkontacija;
 
 // dodaje sve inpute u niz vrijednostiPolja
 inputs.forEach(function (input) {
@@ -40,15 +48,25 @@ function update() {
   document.getElementById("x41").value = kapGub;
   document.getElementById("x40").value > document.getElementById("x41").value
     ? (document.getElementById("x42").value =
-        document.getElementById("x40").value -
-        document.getElementById("x41").value)
+      document.getElementById("x40").value -
+      document.getElementById("x41").value)
     : (document.getElementById("x42").value = 0);
   document.getElementById("x40").value < document.getElementById("x41").value
     ? (document.getElementById("x43").value =
-        document.getElementById("x41").value -
-        document.getElementById("x40").value)
+      document.getElementById("x41").value -
+      document.getElementById("x40").value)
     : (document.getElementById("x43").value = 0);
+  document.getElementById("x45").value = ostKapDob;
+  document.getElementById("x46").value = poreskaOsnovica;
   document.getElementById("x49a").value = dobit9;
+  document.getElementById("x49b").value = dobit12;
+  document.getElementById('x49c').value = dobit15;
+  document.getElementById('x50').value = ukupnaDobit;
+  document.getElementById('x54').value = utvrdjenaPoreskaObaveza;
+  document.getElementById('x57').value = ukupnoPlacenPorez;
+  document.getElementById('x58').value = porezKojiSeDuguje;
+  document.getElementById('x59').value = preplaceniPorez;
+  document.getElementById('x62').value = mjesecnaAkontacija;
 }
 function preracun(vrijednosti) {
   if (vrijednosti["x01"]) {
@@ -142,19 +160,48 @@ function preracun(vrijednosti) {
   }
   kapDob = vrijednosti["x03"];
   kapGub = vrijednosti["x04"];
-  // gubPrethGod = vrijednosti["x38"];
   ostatakOporeziveDobiti = 0;
   ostatakOporeziveDobiti = dobit - vrijednosti["x38"];
-  if (ostatakOporeziveDobiti < 100000) {
-    dobit9 = (ostatakOporeziveDobiti * 9) / 100;
-    dobit12 = 0;
-    dobit15 = 0;
+  ostKapDob = kapDob - vrijednosti["x44"];
+  poreskaOsnovica = ostatakOporeziveDobiti + ostKapDob;
+
+  switch (true) {
+    case (poreskaOsnovica < 100000):
+      dobit9 = poreskaOsnovica * 9 / 100;
+      dobit12 = 0;
+      dobit15 = 0;
+      break;
+    case (poreskaOsnovica < 1500000):
+      dobit9 = 9000;
+      dobit12 = (poreskaOsnovica - 100000) * 12 / 100;
+      dobit15 = 0;
+      break;
+    default:
+      dobit9 = 9000;
+      dobit12 = 168000;
+      dobit15 = (poreskaOsnovica - 1500000) * 15 / 100;
+      break;
   }
+
+  ukupnaDobit = dobit9 + dobit12 + dobit15;
+  utvrdjenaPoreskaObaveza = ukupnaDobit - vrijednosti['x51'] - vrijednosti['x52'] - vrijednosti['x53'];
+  ukupnoPlacenPorez = vrijednosti['x55'] + vrijednosti['x56'];
+  if (utvrdjenaPoreskaObaveza - ukupnoPlacenPorez > 0) {
+    porezKojiSeDuguje = utvrdjenaPoreskaObaveza - ukupnoPlacenPorez;
+    preplaceniPorez = 0;
+  } else {
+    porezKojiSeDuguje = 0;
+    preplaceniPorez = ukupnoPlacenPorez - utvrdjenaPoreskaObaveza;
+  }
+
+  mjesecnaAkontacija = utvrdjenaPoreskaObaveza / 12;
+
+
 
   console.log("rezultatDobit ", rezultat);
   console.log("gubitak ", gubitak);
   console.log("dobit ", dobit);
-  console.log("dobit9 je", dobit9, dobit15);
+  console.log("dobit9 je", dobit9, dobit12, dobit15);
   console.log(vrijednosti["38"]);
   console.log(ostatakOporeziveDobiti);
   console.log(kapDob, kapGub);
@@ -206,18 +253,26 @@ select.addEventListener("change", (event) => {
 });
 
 document.getElementById("proba").addEventListener("click", function () {
-  let rezultatDobit =
-    vrijednostiPolja["x01"] - vrijednostiPolja["x03"] + vrijednostiPolja["x04"];
-  console.log(vrijednostiPolja);
-  console.log(vrijednostiPolja["x36"]);
-  console.log(typeof vrijednostiPolja["x03"]);
-  console.log(rezultatDobit);
+  inputs.forEach(function (input) {
+    vrijednostiPolja[input.name] = parseFloat(input.value);
+    if (!vrijednostiPolja[input.name]) {
+      vrijednostiPolja[input.name] = 0;
+    }
+    console.log(vrijednostiPolja);
+  });
 });
 
 // kreira xml
 document.getElementById("download-btn").addEventListener(
   "click",
   function () {
+    inputs.forEach(function (input) {
+      vrijednostiPolja[input.name] = parseFloat(input.value);
+      if (!vrijednostiPolja[input.name]) {
+        vrijednostiPolja[input.name] = 0;
+      }
+      console.log(vrijednostiPolja);
+    });
     var text = `<?xml version="1.0" encoding="utf-8"?>
     <PortalCitReturn2018 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <PIB>${pib}</PIB>
@@ -269,8 +324,8 @@ document.getElementById("download-btn").addEventListener(
       <Iznos33>${vrijednostiPolja["x33"]}</Iznos33>
       <Iznos34>${vrijednostiPolja["x34"]}</Iznos34>
       <Iznos35>${vrijednostiPolja["x35"]}</Iznos35>
-      <Iznos36>${dobit}</Iznos36>
-      <Iznos37>${gubitak}</Iznos37>
+      <Iznos36>${vrijednostiPolja["x36"]}</Iznos36>
+      <Iznos37>${vrijednostiPolja["x37"]}</Iznos37>
       <Iznos38>${vrijednostiPolja["x38"]}</Iznos38>
       <Iznos39>${vrijednostiPolja["x39"]}</Iznos39>
       <Iznos40>${vrijednostiPolja["x40"]}</Iznos40>
