@@ -9,27 +9,46 @@ const form = document.querySelector("form");
 const inputs = form.querySelectorAll("input");
 const select = document.getElementById("mySelect");
 const vrijednostiPolja = [];
-let rezultat, dobit9, dobit12, dobit15, gubitak, dobit, ostatakOporeziveDobiti;
+let rezultat,
+  dobit9,
+  dobit12,
+  dobit15,
+  gubitak,
+  dobit,
+  ostatakOporeziveDobiti,
+  gubPrethGod,
+  kapDob,
+  kapGub;
 
 // dodaje sve inpute u niz vrijednostiPolja
 inputs.forEach(function (input) {
   vrijednostiPolja[input.name] = 0;
-  input.addEventListener("input", function () {
+  input.addEventListener("blur", function () {
     vrijednostiPolja[input.name] = parseFloat(input.value);
+    if (!input.value) vrijednostiPolja[input.name] = 0;
     console.log(vrijednostiPolja);
     preracun(vrijednostiPolja);
-    update()
+    update();
   });
 });
 
 function update() {
-  document.getElementById('x36').value = dobit;
-  document.getElementById('x37').value = gubitak;
-  document.getElementById('x39').value = dobit - vrijednostiPolja['x38'];
-  document.getElementById('x40').value = document.getElementById('x03').value;
-  document.getElementById('x41').value = document.getElementById('x04').value;
-  document.getElementById('x40').value > document.getElementById('x41').value ? document.getElementById('x42').value = document.getElementById('x40').value - document.getElementById('x41').value : document.getElementById('x42').value = 0;
-  document.getElementById('x40').value < document.getElementById('x41').value ? document.getElementById('x43').value = document.getElementById('x41').value - document.getElementById('x40').value : document.getElementById('x43').value = 0;
+  document.getElementById("x36").value = dobit;
+  document.getElementById("x37").value = gubitak;
+  document.getElementById("x39").value = ostatakOporeziveDobiti;
+  document.getElementById("x40").value = kapDob;
+  document.getElementById("x41").value = kapGub;
+  document.getElementById("x40").value > document.getElementById("x41").value
+    ? (document.getElementById("x42").value =
+        document.getElementById("x40").value -
+        document.getElementById("x41").value)
+    : (document.getElementById("x42").value = 0);
+  document.getElementById("x40").value < document.getElementById("x41").value
+    ? (document.getElementById("x43").value =
+        document.getElementById("x41").value -
+        document.getElementById("x40").value)
+    : (document.getElementById("x43").value = 0);
+  document.getElementById("x49a").value = dobit9;
 }
 function preracun(vrijednosti) {
   if (vrijednosti["x01"]) {
@@ -75,7 +94,6 @@ function preracun(vrijednosti) {
     } else {
       dobit = rezultat;
       gubitak = 0;
-
     }
   } else {
     rezultat =
@@ -117,18 +135,29 @@ function preracun(vrijednosti) {
     } else {
       gubitak = rezultat;
       dobit = 0;
+      dobit9 = 0;
+      dobit12 = 0;
+      dobit15 = 0;
     }
   }
-
-  if (dobit > 0 && dobit < 100000) {
-    dobit9 = (dobit * 9) / 100;
+  kapDob = vrijednosti["x03"];
+  kapGub = vrijednosti["x04"];
+  // gubPrethGod = vrijednosti["x38"];
+  ostatakOporeziveDobiti = 0;
+  ostatakOporeziveDobiti = dobit - vrijednosti["x38"];
+  if (ostatakOporeziveDobiti < 100000) {
+    dobit9 = (ostatakOporeziveDobiti * 9) / 100;
+    dobit12 = 0;
+    dobit15 = 0;
   }
+
   console.log("rezultatDobit ", rezultat);
   console.log("gubitak ", gubitak);
   console.log("dobit ", dobit);
-  console.log("dobit9 je", dobit9);
-  console.log(vrijednosti['x36']);
+  console.log("dobit9 je", dobit9, dobit15);
+  console.log(vrijednosti["38"]);
   console.log(ostatakOporeziveDobiti);
+  console.log(kapDob, kapGub);
 }
 
 // funkcija za izvoz xml-a
