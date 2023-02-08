@@ -9,7 +9,7 @@ const form = document.querySelector("form");
 const inputs = form.querySelectorAll("input");
 const select = document.getElementById("mySelect");
 const vrijednostiPolja = [];
-let rezultat, dobit9, dobit12, dobit15, gubitak, dobit;
+let rezultat, dobit9, dobit12, dobit15, gubitak, dobit, ostatakOporeziveDobiti;
 
 // dodaje sve inpute u niz vrijednostiPolja
 inputs.forEach(function (input) {
@@ -18,9 +18,19 @@ inputs.forEach(function (input) {
     vrijednostiPolja[input.name] = parseFloat(input.value);
     console.log(vrijednostiPolja);
     preracun(vrijednostiPolja);
+    update()
   });
 });
 
+function update() {
+  document.getElementById('x36').value = dobit;
+  document.getElementById('x37').value = gubitak;
+  document.getElementById('x39').value = dobit - vrijednostiPolja['x38'];
+  document.getElementById('x40').value = document.getElementById('x03').value;
+  document.getElementById('x41').value = document.getElementById('x04').value;
+  document.getElementById('x40').value > document.getElementById('x41').value ? document.getElementById('x42').value = document.getElementById('x40').value - document.getElementById('x41').value : document.getElementById('x42').value = 0;
+  document.getElementById('x40').value < document.getElementById('x41').value ? document.getElementById('x43').value = document.getElementById('x41').value - document.getElementById('x40').value : document.getElementById('x43').value = 0;
+}
 function preracun(vrijednosti) {
   if (vrijednosti["x01"]) {
     rezultat =
@@ -65,6 +75,7 @@ function preracun(vrijednosti) {
     } else {
       dobit = rezultat;
       gubitak = 0;
+
     }
   } else {
     rezultat =
@@ -116,6 +127,8 @@ function preracun(vrijednosti) {
   console.log("gubitak ", gubitak);
   console.log("dobit ", dobit);
   console.log("dobit9 je", dobit9);
+  console.log(vrijednosti['x36']);
+  console.log(ostatakOporeziveDobiti);
 }
 
 // funkcija za izvoz xml-a
@@ -164,19 +177,18 @@ select.addEventListener("change", (event) => {
 });
 
 document.getElementById("proba").addEventListener("click", function () {
-  let rezultatDobit =
-    vrijednostiPolja["x01"] - vrijednostiPolja["x03"] + vrijednostiPolja["x04"];
-  console.log(vrijednostiPolja);
-  console.log(vrijednostiPolja["x03"]);
-  console.log(typeof vrijednostiPolja["x03"]);
-  console.log(rezultatDobit);
-});
+  inputs.forEach(function (input) {
+    vrijednostiPolja[input.name] = 0;
+    vrijednostiPolja[input.name] = parseFloat(input.value);
+    console.log(vrijednostiPolja);
 
-// kreira xml
-document.getElementById("download-btn").addEventListener(
-  "click",
-  function () {
-    var text = `<?xml version="1.0" encoding="utf-8"?>
+  });
+
+  // kreira xml
+  document.getElementById("download-btn").addEventListener(
+    "click",
+    function () {
+      var text = `<?xml version="1.0" encoding="utf-8"?>
     <PortalCitReturn2018 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <PIB>${pib}</PIB>
       <Godina>${godina}</Godina>
@@ -285,10 +297,10 @@ document.getElementById("download-btn").addEventListener(
       </Error>
     </PortalCitReturn2018>
     `;
-    console.log(izabranaFirma.ime);
-    //   var filename = document.getElementById("filename").value;
-    var filename = `${izabranaFirma.ime}.xml`;
-    download(filename, text);
-  },
-  false
-);
+      console.log(izabranaFirma.ime);
+      //   var filename = document.getElementById("filename").value;
+      var filename = `${izabranaFirma.ime}.xml`;
+      download(filename, text);
+    },
+    false
+  );
