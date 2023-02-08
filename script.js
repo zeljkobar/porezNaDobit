@@ -177,18 +177,19 @@ select.addEventListener("change", (event) => {
 });
 
 document.getElementById("proba").addEventListener("click", function () {
-  inputs.forEach(function (input) {
-    vrijednostiPolja[input.name] = 0;
-    vrijednostiPolja[input.name] = parseFloat(input.value);
-    console.log(vrijednostiPolja);
+  let rezultatDobit =
+    vrijednostiPolja["x01"] - vrijednostiPolja["x03"] + vrijednostiPolja["x04"];
+  console.log(vrijednostiPolja);
+  console.log(vrijednostiPolja["x36"]);
+  console.log(typeof vrijednostiPolja["x03"]);
+  console.log(rezultatDobit);
+});
 
-  });
-
-  // kreira xml
-  document.getElementById("download-btn").addEventListener(
-    "click",
-    function () {
-      var text = `<?xml version="1.0" encoding="utf-8"?>
+// kreira xml
+document.getElementById("download-btn").addEventListener(
+  "click",
+  function () {
+    var text = `<?xml version="1.0" encoding="utf-8"?>
     <PortalCitReturn2018 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <PIB>${pib}</PIB>
       <Godina>${godina}</Godina>
@@ -297,10 +298,10 @@ document.getElementById("proba").addEventListener("click", function () {
       </Error>
     </PortalCitReturn2018>
     `;
-      console.log(izabranaFirma.ime);
-      //   var filename = document.getElementById("filename").value;
-      var filename = `${izabranaFirma.ime}.xml`;
-      download(filename, text);
-    },
-    false
-  );
+    console.log(izabranaFirma.ime);
+    //   var filename = document.getElementById("filename").value;
+    var filename = `${izabranaFirma.ime}.xml`;
+    download(filename, text);
+  },
+  false
+);
