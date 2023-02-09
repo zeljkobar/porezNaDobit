@@ -60,6 +60,7 @@ function update() {
     : (document.getElementById("x43").value = 0);
   document.getElementById("x45").value = ostKapDob;
   document.getElementById("x46").value = poreskaOsnovica;
+  document.getElementById("x48").value = poreskaOsnovica;
   document.getElementById("x49a").value = dobit9;
   document.getElementById("x49b").value = dobit12;
   document.getElementById("x49c").value = dobit15;
@@ -272,15 +273,15 @@ select.addEventListener("change", (event) => {
   adresa = izabranaFirma.adresa;
 });
 
-document.getElementById("proba").addEventListener("click", function () {
-  inputs.forEach(function (input) {
-    vrijednostiPolja[input.name] = parseFloat(input.value);
-    if (!vrijednostiPolja[input.name]) {
-      vrijednostiPolja[input.name] = 0;
-    }
-    console.log(vrijednostiPolja);
-  });
-});
+// document.getElementById("proba").addEventListener("click", function () {
+//   inputs.forEach(function (input) {
+//     vrijednostiPolja[input.name] = parseFloat(input.value);
+//     if (!vrijednostiPolja[input.name]) {
+//       vrijednostiPolja[input.name] = 0;
+//     }
+//     console.log(vrijednostiPolja);
+//   });
+// });
 
 // kreira xml
 document.getElementById("download-btn").addEventListener(
@@ -294,7 +295,7 @@ document.getElementById("download-btn").addEventListener(
       console.log(vrijednostiPolja);
     });
     var text = `<?xml version="1.0" encoding="utf-8"?>
-    <PortalCitReturn2018 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <PortalCitReturn2023 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <PIB>${pib}</PIB>
       <Godina>${godina}</Godina>
       <Od>2022-01-01T00:00:00</Od>
@@ -400,7 +401,7 @@ document.getElementById("download-btn").addEventListener(
         <Show>false</Show>
         <Message />
       </Error>
-    </PortalCitReturn2018>
+    </PortalCitReturn2023>
     `;
     console.log(izabranaFirma.ime);
     //   var filename = document.getElementById("filename").value;
