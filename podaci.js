@@ -177,7 +177,110 @@ const iiiris = {
   adresa: "Boljevici bb",
   pdv: "80/31-01637-2",
 };
+
+const eurowin = {
+  ime: "Eurowin d.o.o.",
+  pib: "02998424",
+  adresa: "Jovana Tomasevica",
+  pdv: "80/31-02995-4",
+};
+
+const summasummarum = {
+  ime: "Summa Summarum d.o.o.",
+  pib: "02825767",
+  adresa: "Popa Dukljanina 2",
+  pdv: "80/31-02217-8",
+};
+
+const washigo = {
+  ime: "Wash & Go d.o.o.",
+  pib: "02904136",
+  adresa: "Bjelisi bb",
+  pdv: "80/31-02586-8",
+};
+
+const montinvest = {
+  ime: "Montinvest Bar d.o.o.",
+  pib: "02822768",
+  adresa: "Bijelisi bb",
+  pdv: "",
+};
+
+const aginzenjering = {
+  ime: "Ag Inzenjering d.o.o.",
+  pib: "02780852",
+  adresa: "Bulevar Revolucije C4",
+  pdv: "80/31-02035-3",
+};
+
+const oldhousepajovic = {
+  ime: "Old House Pajovic d.o.o.",
+  pib: "03429474",
+  adresa: "Virpazar bb",
+  pdv: "",
+};
+
+const beautybyroxy = {
+  ime: "Beauty By Roxy d.o.o.",
+  pib: "03309967",
+  adresa: "Vuka Karadzica H1 br 13",
+  pdv: "",
+};
+
+const petshopfenix = {
+  ime: "Pet Shop Fenix d.o.o.",
+  pib: "03090604",
+  adresa: "24 Novembra H24",
+  pdv: "80/31-03455-9",
+};
+
+const skerovicgradnja = {
+  ime: "Skerovic gradnja d.o.o.",
+  pib: "02309602",
+  adresa: "Topolica II",
+  pdv: "80/31-00424-2",
+};
+
+const birozalegalizaciju = {
+  ime: "Biro za legalizaciju objekata d.o.o.",
+  pib: "03187985",
+  adresa: "Bulevar Revolucije C6",
+  pdv: "",
+};
+
+const opticonnect = {
+  ime: "Opticonnect d.o.o.",
+  pib: "03411036",
+  adresa: "Jovana Tomasevica 12",
+  pdv: "80/31-04713-8",
+};
+
+const besttime = {
+  ime: "Best time d.o.o.",
+  pib: "03425509",
+  adresa: "Susanj bb",
+  pdv: "",
+};
+
+const fancybar = {
+  ime: "Fancy Bar d.o.o.",
+  pib: "02791455",
+  adresa: "Haj Nehaj bb",
+  pdv: "",
+};
 const firme = [
+  summasummarum,
+  opticonnect,
+  fancybar,
+  besttime,
+  birozalegalizaciju,
+  skerovicgradnja,
+  petshopfenix,
+  beautybyroxy,
+  oldhousepajovic,
+  aginzenjering,
+  montinvest,
+  washigo,
   zavet,
   volume,
   wGroup,
@@ -204,4 +307,5 @@ const firme = [
   ninaMont,
   phoenixPetroleum,
   iiiris,
+  eurowin,
 ];
