@@ -26,7 +26,9 @@ let rezultat,
   ukupnoPlacenPorez,
   porezKojiSeDuguje,
   preplaceniPorez,
-  mjesecnaAkontacija;
+  mjesecnaAkontacija,
+  ukupnoGubici,
+  ukupnoKapGubici;
 
 // dodaje sve inpute u niz vrijednostiPolja
 inputs.forEach(function (input) {
@@ -48,25 +50,31 @@ function update() {
   document.getElementById("x41").value = kapGub;
   document.getElementById("x40").value > document.getElementById("x41").value
     ? (document.getElementById("x42").value =
-      document.getElementById("x40").value -
-      document.getElementById("x41").value)
+        document.getElementById("x40").value -
+        document.getElementById("x41").value)
     : (document.getElementById("x42").value = 0);
   document.getElementById("x40").value < document.getElementById("x41").value
     ? (document.getElementById("x43").value =
-      document.getElementById("x41").value -
-      document.getElementById("x40").value)
+        document.getElementById("x41").value -
+        document.getElementById("x40").value)
     : (document.getElementById("x43").value = 0);
   document.getElementById("x45").value = ostKapDob;
   document.getElementById("x46").value = poreskaOsnovica;
   document.getElementById("x49a").value = dobit9;
   document.getElementById("x49b").value = dobit12;
-  document.getElementById('x49c').value = dobit15;
-  document.getElementById('x50').value = ukupnaDobit;
-  document.getElementById('x54').value = utvrdjenaPoreskaObaveza;
-  document.getElementById('x57').value = ukupnoPlacenPorez;
-  document.getElementById('x58').value = porezKojiSeDuguje;
-  document.getElementById('x59').value = preplaceniPorez;
-  document.getElementById('x62').value = mjesecnaAkontacija;
+  document.getElementById("x49c").value = dobit15;
+  document.getElementById("x50").value = ukupnaDobit;
+  document.getElementById("x54").value = utvrdjenaPoreskaObaveza;
+  document.getElementById("x57").value = ukupnoPlacenPorez;
+  document.getElementById("x58").value = porezKojiSeDuguje;
+  document.getElementById("x59").value = preplaceniPorez;
+  document.getElementById("x62").value = mjesecnaAkontacija;
+  document.getElementById("pg1_1").value = dobit;
+  document.getElementById("pg1_2").value = ukupnoGubici;
+  document.getElementById("x38").value = document.getElementById("pg1_3").value;
+  document.getElementById("pg2_1").value = document.getElementById("x42").value;
+  document.getElementById("pg2_2").value = ukupnoKapGubici;
+  document.getElementById("x44").value = document.getElementById("pg2_3").value;
 }
 function preracun(vrijednosti) {
   if (vrijednosti["x01"]) {
@@ -166,26 +174,27 @@ function preracun(vrijednosti) {
   poreskaOsnovica = ostatakOporeziveDobiti + ostKapDob;
 
   switch (true) {
-    case (poreskaOsnovica < 100000):
-      dobit9 = poreskaOsnovica * 9 / 100;
+    case poreskaOsnovica < 100000:
+      dobit9 = (poreskaOsnovica * 9) / 100;
       dobit12 = 0;
       dobit15 = 0;
       break;
-    case (poreskaOsnovica < 1500000):
+    case poreskaOsnovica < 1500000:
       dobit9 = 9000;
-      dobit12 = (poreskaOsnovica - 100000) * 12 / 100;
+      dobit12 = ((poreskaOsnovica - 100000) * 12) / 100;
       dobit15 = 0;
       break;
     default:
       dobit9 = 9000;
       dobit12 = 168000;
-      dobit15 = (poreskaOsnovica - 1500000) * 15 / 100;
+      dobit15 = ((poreskaOsnovica - 1500000) * 15) / 100;
       break;
   }
 
   ukupnaDobit = dobit9 + dobit12 + dobit15;
-  utvrdjenaPoreskaObaveza = ukupnaDobit - vrijednosti['x51'] - vrijednosti['x52'] - vrijednosti['x53'];
-  ukupnoPlacenPorez = vrijednosti['x55'] + vrijednosti['x56'];
+  utvrdjenaPoreskaObaveza =
+    ukupnaDobit - vrijednosti["x51"] - vrijednosti["x52"] - vrijednosti["x53"];
+  ukupnoPlacenPorez = vrijednosti["x55"] + vrijednosti["x56"];
   if (utvrdjenaPoreskaObaveza - ukupnoPlacenPorez > 0) {
     porezKojiSeDuguje = utvrdjenaPoreskaObaveza - ukupnoPlacenPorez;
     preplaceniPorez = 0;
@@ -194,9 +203,20 @@ function preracun(vrijednosti) {
     preplaceniPorez = ukupnoPlacenPorez - utvrdjenaPoreskaObaveza;
   }
 
-  mjesecnaAkontacija = utvrdjenaPoreskaObaveza / 12;
+  mjesecnaAkontacija = (utvrdjenaPoreskaObaveza / 12).toFixed(2);
+  ukupnoGubici =
+    vrijednostiPolja["pg1_21"] +
+    vrijednostiPolja["pg1_22"] +
+    vrijednostiPolja["pg1_23"] +
+    vrijednostiPolja["pg1_24"] +
+    vrijednostiPolja["pg1_25"];
 
-
+  ukupnoKapGubici =
+    vrijednostiPolja["pg2_21"] +
+    vrijednostiPolja["pg2_22"] +
+    vrijednostiPolja["pg2_23"] +
+    vrijednostiPolja["pg2_24"] +
+    vrijednostiPolja["pg2_25"];
 
   console.log("rezultatDobit ", rezultat);
   console.log("gubitak ", gubitak);
@@ -353,22 +373,22 @@ document.getElementById("download-btn").addEventListener(
       <Iznos60>${vrijednostiPolja["x60"]}</Iznos60>
       <Iznos61>${vrijednostiPolja["x61"]}</Iznos61>
       <Iznos62>${vrijednostiPolja["x62"]}</Iznos62>
-      <IznosPG1_1>0</IznosPG1_1>
-      <IznosPG1_2>0</IznosPG1_2>
-      <IznosPG1_21>0</IznosPG1_21>
-      <IznosPG1_22>0</IznosPG1_22>
-      <IznosPG1_23>0</IznosPG1_23>
-      <IznosPG1_24>0</IznosPG1_24>
-      <IznosPG1_25>0</IznosPG1_25>
-      <IznosPG1_3>0</IznosPG1_3>
-      <IznosPG2_1>0</IznosPG2_1>
-      <IznosPG2_2>0</IznosPG2_2>
-      <IznosPG2_21>0</IznosPG2_21>
-      <IznosPG2_22>0</IznosPG2_22>
-      <IznosPG2_23>0</IznosPG2_23>
-      <IznosPG2_24>0</IznosPG2_24>
-      <IznosPG2_25>0</IznosPG2_25>
-      <IznosPG2_3>0</IznosPG2_3>
+      <IznosPG1_1>${vrijednostiPolja["pg1_1"]}</IznosPG1_1>
+      <IznosPG1_2>${vrijednostiPolja["pg1_2"]}</IznosPG1_2>
+      <IznosPG1_21>${vrijednostiPolja["pg1_21"]}</IznosPG1_21>
+      <IznosPG1_22>${vrijednostiPolja["pg1_22"]}</IznosPG1_22>
+      <IznosPG1_23>${vrijednostiPolja["pg1_23"]}</IznosPG1_23>
+      <IznosPG1_24>${vrijednostiPolja["pg1_24"]}</IznosPG1_24>
+      <IznosPG1_25>${vrijednostiPolja["pg1_25"]}</IznosPG1_25>
+      <IznosPG1_3>${vrijednostiPolja["pg1_3"]}</IznosPG1_3>
+      <IznosPG2_1>${vrijednostiPolja["pg2_1"]}</IznosPG2_1>
+      <IznosPG2_2>${vrijednostiPolja["pg2_2"]}</IznosPG2_2>
+      <IznosPG2_21>${vrijednostiPolja["pg2_21"]}</IznosPG2_21>
+      <IznosPG2_22>${vrijednostiPolja["pg2_22"]}</IznosPG2_22>
+      <IznosPG2_23>${vrijednostiPolja["pg2_23"]}</IznosPG2_23>
+      <IznosPG2_24>${vrijednostiPolja["pg2_24"]}</IznosPG2_24>
+      <IznosPG2_25>${vrijednostiPolja["pg2_25"]}</IznosPG2_25>
+      <IznosPG2_3>${vrijednostiPolja["pg2_3"]}</IznosPG2_3>
       <BrojDokumentaOrgId></BrojDokumentaOrgId>
       <BrojDokumentaRbr>0</BrojDokumentaRbr>
       <Akcija>new</Akcija>
