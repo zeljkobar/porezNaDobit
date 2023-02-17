@@ -1,6 +1,11 @@
 let izabranaFirma, naziv, pib, adresa;
 let godina = 2022;
-let Izmijenjena = false;
+let isCheked = false;
+let Izmijenjena = document.getElementById("checkbox").value;
+if (Izmijenjena === "on") {
+  isCheked = true;
+}
+
 let OvlascenoLicePrezimeIme = "Zeljko Djuranovic";
 let OvlascenoLicePIB = "1606981220012";
 let KontaktTelefon = "067440040";
@@ -300,7 +305,7 @@ document.getElementById("download-btn").addEventListener(
       <Godina>${godina}</Godina>
       <Od>2022-01-01T00:00:00</Od>
       <Do>2022-12-31T00:00:00</Do>
-      <Izmijenjena>${Izmijenjena}</Izmijenjena>
+      <Izmijenjena>${isCheked}</Izmijenjena>
       <Naziv>${izabranaFirma.ime}</Naziv>
       <Rezident>true</Rezident>
       <Adresa>${izabranaFirma.adresa}</Adresa>

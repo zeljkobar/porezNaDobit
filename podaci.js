@@ -268,9 +268,66 @@ const fancybar = {
   adresa: "Haj Nehaj bb",
   pdv: "",
 };
+
+const samraj = {
+  ime: "Samraj d.o.o.",
+  pib: "03356299",
+  adresa: "Glavanovica 16",
+  pdv: "",
+};
+
+const albyInternational = {
+  ime: "Alby International d.o.o.",
+  pib: "03273539",
+  adresa: "Velika Gorana bb",
+  pdv: "",
+};
+
+const bartolomeo = {
+  ime: "Bartolomeo d.o.o.",
+  pib: "03036294",
+  adresa: "Poslovni centar G9",
+  pdv: "",
+};
+
+const cengic = {
+  ime: "Čengić s.ing d.o.o.",
+  pib: "03321223",
+  adresa: "24 Novembra h23/42",
+  pdv: "",
+};
+
+const knaufSerice = {
+  ime: "Knauf service d.o.o.",
+  pib: "02620812",
+  adresa: "Omladinska 13",
+  pdv: "",
+};
+
+const polarisMaritime = {
+  ime: "Polaris maritime d.o.o.",
+  pib: "02971020",
+  adresa: "Marsala Tita D5",
+  pdv: "",
+};
+
+const stefanoM = {
+  ime: "Stefano M d.o.o.",
+  pib: "02978342",
+  adresa: "Bjelisi bb",
+  pdv: "",
+};
+
 const firme = [
   summasummarum,
   opticonnect,
+  cengic,
+  stefanoM,
+  polarisMaritime,
+  knaufSerice,
+  bartolomeo,
+  albyInternational,
+  samraj,
   fancybar,
   besttime,
   birozalegalizaciju,
