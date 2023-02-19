@@ -318,10 +318,18 @@ const stefanoM = {
   pdv: "",
 };
 
+const mrJack = {
+  ime: "Mr.Jack d.o.o.",
+  pib: "03502945",
+  adresa: "24.Novembra H23",
+  pdv: "",
+};
+
 const firme = [
   summasummarum,
   opticonnect,
   cengic,
+  mrJack,
   stefanoM,
   polarisMaritime,
   knaufSerice,

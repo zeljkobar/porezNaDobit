@@ -1,10 +1,10 @@
 let izabranaFirma, naziv, pib, adresa;
 let godina = 2022;
 let isCheked = false;
-let Izmijenjena = document.getElementById("checkbox").value;
-if (Izmijenjena === "on") {
-  isCheked = true;
-}
+// let Izmijenjena = document.getElementById("checkbox").value;
+// if (Izmijenjena === "on") {
+//   isCheked = true;
+// }
 
 let OvlascenoLicePrezimeIme = "Zeljko Djuranovic";
 let OvlascenoLicePIB = "1606981220012";
@@ -298,6 +298,7 @@ document.getElementById("download-btn").addEventListener(
         vrijednostiPolja[input.name] = 0;
       }
       console.log(vrijednostiPolja);
+      console.log(isCheked);
     });
     var text = `<?xml version="1.0" encoding="utf-8"?>
     <PortalCitReturn2023 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
