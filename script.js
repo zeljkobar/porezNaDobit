@@ -304,8 +304,8 @@ document.getElementById("download-btn").addEventListener(
     <PortalCitReturn2023 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <PIB>${pib}</PIB>
       <Godina>${godina}</Godina>
-      <Od>2022-01-01T00:00:00</Od>
-      <Do>2022-12-31T00:00:00</Do>
+      <Od>2023-01-01T00:00:00</Od>
+      <Do>2023-12-31T00:00:00</Do>
       <Izmijenjena>${isCheked}</Izmijenjena>
       <Naziv>${izabranaFirma.ime}</Naziv>
       <Rezident>true</Rezident>
