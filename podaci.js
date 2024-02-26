@@ -835,6 +835,27 @@ const thgroup = {
   adresa: "Donji Stoj bb",
   pdv: "",
 };
+
+const montetivar = {
+  ime: "Monte-tivar d.o.o.",
+  pib: "03535045",
+  adresa: "RISTA LEKIĆA BB",
+  pdv: "80/31-04943-2",
+};
+
+const djordjeiduska = {
+  ime: "Djordje i Duska d.o.o.",
+  pib: "03175154",
+  adresa: "Bulevar revolucije 16",
+  pdv: "",
+};
+const inovatorshop = {
+  ime: "Inovator Shop d.o.o.",
+  pib: "03612376",
+  adresa: "Podsustas bb",
+  pdv: "80/31-05155-0",
+};
+
 const firme = [
   summasummarum,
   opticonnect,
@@ -960,4 +981,7 @@ const firme = [
   amsterplus,
   vinarija,
   termogas,
+  montetivar,
+  djordjeiduska,
+  inovatorshop,
 ];
