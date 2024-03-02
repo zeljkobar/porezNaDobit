@@ -856,6 +856,13 @@ const inovatorshop = {
   pdv: "80/31-05155-0",
 };
 
+const smhgroup = {
+  ime: "SMH Group d.o.o.",
+  pib: "03538770",
+  adresa: "Obala Radovica 77",
+  pdv: "80/31-05069-4",
+};
+
 const firme = [
   summasummarum,
   opticonnect,
@@ -984,4 +991,5 @@ const firme = [
   montetivar,
   djordjeiduska,
   inovatorshop,
+  smhgroup,
 ];
