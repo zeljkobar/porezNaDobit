@@ -863,6 +863,19 @@ const smhgroup = {
   pdv: "80/31-05069-4",
 };
 
+const hsitrade = {
+  ime: "HSI Trade d.o.o.",
+  pib: "03379876",
+  adresa: "TARABOŠKIH JUNAKA BR. 23 ",
+  pdv: "80/31-04878-9",
+};
+const arcconsult = {
+  ime: "ARC - CONSULT d.o.o.",
+  pib: "03425908",
+  adresa: "BULEVAR REVOLUCIJE G11",
+  pdv: "",
+};
+
 const firme = [
   summasummarum,
   opticonnect,
@@ -992,4 +1005,6 @@ const firme = [
   djordjeiduska,
   inovatorshop,
   smhgroup,
+  hsitrade,
+  arcconsult,
 ];
