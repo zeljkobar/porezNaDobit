@@ -876,6 +876,34 @@ const arcconsult = {
   pdv: "",
 };
 
+const sofijailuka = {
+  ime: "Sofija i Luka d.o.o.",
+  pib: "03271820",
+  adresa: "Šušanj bb",
+  pdv: "80/31-04372-8",
+};
+
+const adriaticinvestcorporation = {
+  ime: "Adriatic Invest Corporation d.o.o.",
+  pib: "03532267",
+  adresa: "MARŠALA TITA BB",
+  pdv: "",
+};
+
+const g5 = {
+  ime: "5G d.o.o.",
+  pib: "03538516",
+  adresa: "MAKEDONSKA A1",
+  pdv: "",
+};
+
+const nachos = {
+  ime: "Nachos d.o.o.",
+  pib: "03592715",
+  adresa: "ANTA DJEDOVICA 43B",
+  pdv: "80/31-05101-1",
+}
+
 const firme = [
   summasummarum,
   opticonnect,
@@ -1007,4 +1035,8 @@ const firme = [
   smhgroup,
   hsitrade,
   arcconsult,
+  sofijailuka,
+  adriaticinvestcorporation,
+  g5,
+  nachos,
 ];
