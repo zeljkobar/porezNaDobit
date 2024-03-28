@@ -902,8 +902,14 @@ const nachos = {
   pib: "03592715",
   adresa: "ANTA DJEDOVICA 43B",
   pdv: "80/31-05101-1",
-}
+};
 
+const desetkagroup = {
+  ime: "Desetka Group d.o.o.",
+  pib: "03566935",
+  adresa: "DUBRAVA 85 , BAR, CRNA GORA",
+  pdv: "",
+};
 const firme = [
   summasummarum,
   opticonnect,
@@ -1039,4 +1045,5 @@ const firme = [
   adriaticinvestcorporation,
   g5,
   nachos,
+  desetkagroup,
 ];
