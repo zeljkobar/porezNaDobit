@@ -1,5 +1,5 @@
 let izabranaFirma, naziv, pib, adresa;
-let godina = 2023;
+let godina = 2024;
 let isCheked = false;
 // let Izmijenjena = document.getElementById("checkbox").value;
 // if (Izmijenjena === "on") {
